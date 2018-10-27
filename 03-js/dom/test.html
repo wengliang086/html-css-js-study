@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Page Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" media="screen" href="../../02-css/t.css" />
+    <script src="../../main.js"></script>
+</head>
+
+<body>
+    <div>div1</div>
+    <div>div2</div>
+    <div id="d3">div3</div>
+    <p class="c2 c1">aaa</p>
+    <p>p</p>
+
+    <ol id="list-node" style="clear: left;">
+        <li>fsdf</li>
+        <li>fsdf</li>
+        <li>fsdf</li>
+    </ol>
+    <script>
+        var frag = document.createDocumentFragment();
+        for (let x = 0; x < 10; x++) {
+            var li = document.createElement('li');
+            li.innerHTML = "List item " + x;
+            frag.appendChild(li);
+        }
+        var divNode = document.getElementById("list-node");
+        divNode.appendChild(frag);
+        console.log(divNode.nodeName, divNode.nodeType, divNode.nodeValue);
+        console.log(document.body.childNodes);
+        console.log(document.childNodes);
+        console.log(document.children);
+    </script>
+</body>
+
+</html>

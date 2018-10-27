@@ -1,0 +1,39 @@
+/* * {
+    color: red;
+} */
+
+div {
+    width: 100px;
+    height: 100px;
+    border: solid 1px red;
+    /* position: absolute; */
+    float: left;
+    /* display: inline; */
+}
+
+#d3 {
+    clear: left;
+    float: right;
+}
+
+p {
+    display: inline;
+    /* float: left; */
+}
+
+P::before {
+    content: "b-"
+}
+
+::selection {
+    color: red;
+    background-color: aqua;
+}
+
+.c1 {
+    color: red;
+}
+
+.c2 {
+    color: blue;
+}
