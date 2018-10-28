@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>路由的基本使用</title>
+    <!--<link rel="stylesheet" href="../bs/css/bootstrap.css">-->
+    <link rel="stylesheet" href="../bootstrap-3.3.7-dist/css/bootstrap.css">
+    <style>
+        body {
+            background-color: #e8e8e8;
+        }
+    </style>
+</head>
+<body>
+<div id="app">
+    <div class="row">
+        <div class="col-xs-8 col-xs-offset-2">
+            <div class="page-header">
+                <h1>路由学习</h1>
+            </div>
+        </div>
+    </div>
+    <div id="row">
+        <div class="col-xs-2 col-xs-offset-2">
+            <div class="list-group">
+                <router-link class="list-group-item" to="/h5">H5</router-link>
+                <router-link class="list-group-item" to="/java">JAVA</router-link>
+                <router-link class="list-group-item" to="/python">PYTHON</router-link>
+            </div>
+        </div>
+        <div class="col-xs-6">
+            <div class="panel">
+                <div class="panel-body">
+                    <router-view/>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<template id="h5">
+    <div>
+        <h2>H5学院</h2>
+        <p>H5</p>
+    </div>
+</template>
+
+<template id="java">
+    <div>
+        <h2>JAVA学院</h2>
+        <p>JAVA</p>
+    </div>
+</template>
+
+<template id="python">
+    <div>
+        <h2>PYTHON学院</h2>
+        <p>PYTHON</p>
+    </div>
+</template>
+
+<script src="../js/vue.js"></script>
+<script src="../js/vue-router.js"></script>
+<script>
+    // 创建组件
+    const html5 = Vue.extend({
+        template: '#h5'
+    });
+    const java = Vue.extend({
+        template: '#java'
+    });
+    const python = Vue.extend({
+        template: '#python'
+    });
+
+    const routes = [
+        {path: '/h5', component: html5},
+        {path: '/java', component: java},
+        {path: '/python', component: python},
+        {path: '/', redirect: '/h5'}
+    ];
+
+    const router = new VueRouter({
+        routes
+    });
+
+    new Vue({
+        router
+    }).$mount('#app');
+</script>
+</body>
+</html>

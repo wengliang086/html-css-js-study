@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>路由的基本使用</title>
+    <!--<link rel="stylesheet" href="../bs/css/bootstrap.css">-->
+    <link rel="stylesheet" href="../bootstrap-3.3.7-dist/css/bootstrap.css">
+    <style>
+        body {
+            background-color: #e8e8e8;
+        }
+    </style>
+</head>
+<body>
+<div id="app">
+    <div class="row">
+        <div class="col-xs-8 col-xs-offset-2">
+            <div class="page-header">
+                <h1>路由学习</h1>
+            </div>
+        </div>
+    </div>
+    <div id="row">
+        <div class="col-xs-2 col-xs-offset-2">
+            <div class="list-group">
+                <router-link class="list-group-item" to="/h5">H5</router-link>
+                <router-link class="list-group-item" to="/java">JAVA</router-link>
+                <router-link class="list-group-item" to="/python">PYTHON</router-link>
+            </div>
+        </div>
+        <div class="col-xs-6">
+            <div class="panel">
+                <div class="panel-body">
+                    <router-view/>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<template id="h5">
+    <div>
+        <h2>H5学院</h2>
+        <p>H5</p>
+        <div>
+            <ul class="nav nav-tabs">
+                <router-link to="/h51">基础班</router-link>
+                <router-link to="/h52">大神班</router-link>
+                <router-link to="/h5/h51">基础班</router-link>
+                <router-link to="/h5/h52">大神班</router-link>
+            </ul>
+            <div class="tab-content">
+                <router-view></router-view>
+            </div>
+        </div>
+    </div>
+</template>
+<template id="h51">
+    <div>
+        <h2>H5学院-基础班</h2>
+        <p>H51</p>
+    </div>
+</template>
+<template id="h52">
+    <div>
+        <h2>H5学院-大神班</h2>
+        <p>H52</p>
+    </div>
+</template>
+
+<template id="java">
+    <div>
+        <h2>JAVA学院</h2>
+        <p>JAVA</p>
+    </div>
+</template>
+
+<template id="python">
+    <div>
+        <h2>PYTHON学院</h2>
+        <p>PYTHON</p>
+    </div>
+</template>
+
+<script src="../js/vue.js"></script>
+<script src="../js/vue-router.js"></script>
+<script>
+    // 创建组件
+    const html5 = Vue.extend({
+        template: '#h5'
+    });
+    const html51 = Vue.extend({
+        template: '#h51'
+    });
+    const html52 = Vue.extend({
+        template: '#h52'
+    });
+    const java = Vue.extend({
+        template: '#java'
+    });
+    const python = Vue.extend({
+        template: '#python'
+    });
+
+    const routes = [
+        {
+            path: '/h5', component: html5, children: [
+                {path: '/h51', component: html51},
+                {path: '/h52', component: html52},
+                {path: 'h51', component: html51},
+                {path: 'h52', component: html52},
+                {path: '/', redirect: 'h51'}
+            ]
+        },
+        {path: '/java', component: java},
+        {path: '/python', component: python},
+        {path: '/', redirect: '/h5'}
+    ];
+
+    const router = new VueRouter({
+        routes
+    });
+
+    new Vue({
+        router
+    }).$mount('#app');
+</script>
+</body>
+</html>

@@ -7,10 +7,23 @@
 <body>
 <div id="app">
     <p>{{message}}</p>
+    <my-template></my-template>
 </div>
+
+<template id="div-template">
+    <div>
+        <h2>全局组件测试</h2>
+        <p>第二个标签</p>
+        <input type="text" placeholder="第三个标签">
+    </div>
+</template>
 
 <script src="../js/vue.js"></script>
 <script>
+    Vue.component("my-template", {
+        template: `#div-template`
+    });
+
     let vm = new Vue({
         el: '#app',
         data: {
